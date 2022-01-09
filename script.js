@@ -11,23 +11,26 @@ class Calculator {
     }
 
     setOperand(tempCurrentOperand) {
+        if (this.currentNumber == "" && this.currentOperand == "") {
+            return;
+        }
         if (this.previousNumber == "") {
             this.currentOperand = tempCurrentOperand;
             this.previousNumber = this.currentNumber;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
         } else if (this.result != "" && this.currentOperand == null) {
             this.previousNumber = this.result;
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
         } else if (this.previousNumber != "" && this.currentOperand != null && this.currentNumber == "") {
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
@@ -84,7 +87,7 @@ class Calculator {
             this.result = parseFloat(this.previousNumber) + parseFloat(this.currentNumber);
             this.previousNumber = this.result;
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
@@ -93,7 +96,7 @@ class Calculator {
             this.result = parseFloat(this.previousNumber) - parseFloat(this.currentNumber);
             this.previousNumber = this.result;
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
@@ -102,7 +105,7 @@ class Calculator {
             this.result = parseFloat(this.previousNumber) * parseFloat(this.currentNumber);
             this.previousNumber = this.result;
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
@@ -111,7 +114,7 @@ class Calculator {
             this.result = parseFloat(this.previousNumber) / parseFloat(this.currentNumber);
             this.previousNumber = this.result;
             this.currentOperand = tempCurrentOperand;
-            this.tempPrviousScreenAppear = this.previousNumber + this.currentOperand;
+            this.tempPrviousScreenAppear = this.previousNumber + " " + this.currentOperand;
             screenPrevious.innerText = this.tempPrviousScreenAppear;
             this.currentNumber = "";
             screenCurrent.innerText = this.currentNumber;
@@ -138,7 +141,8 @@ class Calculator {
         }
     }
     cekAwal() {
-        if (this.previousNumber != "") {
+        if (this.result != "") {
+            this.currentNumber = this.previousNumber;
             this.previousNumber = "";
             this.result = "";
         }
